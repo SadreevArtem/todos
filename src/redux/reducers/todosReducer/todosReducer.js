@@ -1,11 +1,13 @@
 /* eslint-disable default-param-last */
 import {
-  ADD_TODO, CHANGE_STATUS_TODO,
+  ADD_TODO, ADD_TODOS, CHANGE_STATUS_TODO,
   CLEAR_TODOS, DELETE_TODO,
 } from '../../types/todosTypes'
 
 export const todosReducer = (state = [], action) => {
   switch (action.type) {
+    case ADD_TODOS:
+      return action.payload
     case ADD_TODO:
       return [action.payload, ...state]
 

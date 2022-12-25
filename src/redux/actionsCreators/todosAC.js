@@ -1,5 +1,5 @@
 import {
-  ADD_TODO, CHANGE_STATUS_TODO,
+  ADD_TODO, ADD_TODOS, CHANGE_STATUS_TODO,
   CLEAR_TODOS, DELETE_TODO,
 } from '../types/todosTypes'
 
@@ -11,6 +11,24 @@ export const addNewTodoAC = (title) => ({
     title,
   },
 })
+export const addNewTodosAC = (newTodos) => ({
+  type: ADD_TODOS,
+  payload: newTodos,
+})
+
+export const getTodosAC = () => async (dispatch) => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users/1/todos?_limit=5')
+  const todos = await res.json()
+  const preparedTodos = todos.map((todo) => {
+    const { userId, completed, ...restTodo } = todo
+    return {
+      ...restTodo,
+      status: completed,
+    }
+  })
+
+  dispatch(addNewTodosAC(preparedTodos))
+}
 
 export const deleteTodoAC = (id) => ({
   type: DELETE_TODO,

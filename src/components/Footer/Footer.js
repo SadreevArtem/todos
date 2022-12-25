@@ -13,7 +13,7 @@ export const Footer = React.memo(() => {
 
   return (
     <footer className="d-flex justify-content-center">
-      <button onClick={clearTodoHandler} type="button" className="btn btn-danger">
+      <button onClick={clearTodoHandler} type="button" className="mx-3 btn btn-danger">
         Clear
       </button>
       <Form />
