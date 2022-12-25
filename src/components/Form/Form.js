@@ -1,25 +1,17 @@
 import React, { useState } from 'react'
-import { useTodosHelpersContext } from '../../contexts/TodosContext'
+import { useDispatch } from 'react-redux'
+import { addNewTodoAC } from '../../redux/actionsCreators/todosAC'
 
-export const Form = React.memo(({ submitAdditionAction }) => {
+export const Form = React.memo(() => {
   const [input, setInput] = useState('')
-
-  const { addNewTodo } = useTodosHelpersContext()
-
-  console.log('Render Form')
+  const dispatch = useDispatch()
 
   const submitHandler = (e) => {
     e.preventDefault()
 
-    console.log({ input })
-
     if (input) {
-      addNewTodo(input)
+      dispatch(addNewTodoAC(input))
       setInput('')
-
-      if (typeof submitAdditionAction === 'function') {
-        submitAdditionAction()
-      }
     }
   }
 

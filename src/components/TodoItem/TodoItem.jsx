@@ -1,10 +1,18 @@
-import { useTodosHelpersContext } from '../../contexts/TodosContext'
+import { useDispatch } from 'react-redux'
 import todoItemStyles from './styles.module.scss'
+import { deleteTodoAC, changeStatusTodoAC } from '../../redux/actionsCreators/todosAC'
 
 export function TodoItem({
   id, title, status, inx,
 }) {
-  const { changeTodoStatus, deleteTodo } = useTodosHelpersContext()
+  const dispatch = useDispatch()
+
+  const deleteHandler = () => {
+    dispatch(deleteTodoAC(id))
+  }
+  const changeTodoStatusHandler = () => {
+    dispatch(changeStatusTodoAC(id))
+  }
 
   return (
     <li
@@ -22,14 +30,14 @@ export function TodoItem({
       </span>
       <div>
         <button
-          onClick={() => deleteTodo(id)}
+          onClick={() => deleteHandler(id)}
           type="button"
           className="btn mx-2 btn-danger"
         >
           Delete
         </button>
         <button
-          onClick={() => changeTodoStatus(id)}
+          onClick={() => changeTodoStatusHandler(id)}
           type="button"
           className="btn btn-success"
         >

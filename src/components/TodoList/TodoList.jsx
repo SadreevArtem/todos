@@ -1,8 +1,12 @@
-import { useTodosContext } from '../../contexts/TodosContext'
+import { useSelector } from 'react-redux'
 import { TodoItem } from '../TodoItem/TodoItem'
 
 export function TodoList() {
-  const todos = useTodosContext()
+  const { todos } = useSelector((store) => store)
+
+  if (!todos.length) {
+    return <p>Todo list is empty...</p>
+  }
 
   return (
     <ul className="list-group">
