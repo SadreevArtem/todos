@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import todoItemStyles from './styles.module.scss'
-import { deleteTodoAC, changeStatusTodoAC } from '../../redux/actionsCreators/todosAC'
+import { todoChangeStatus, todoDelete } from '../../redux/slices/todosSlice/todosSlice'
 
 export function TodoItem({
   id, title, status, inx,
@@ -8,10 +8,10 @@ export function TodoItem({
   const dispatch = useDispatch()
 
   const deleteHandler = () => {
-    dispatch(deleteTodoAC(id))
+    dispatch(todoDelete(id))
   }
   const changeTodoStatusHandler = () => {
-    dispatch(changeStatusTodoAC(id))
+    dispatch(todoChangeStatus(id))
   }
 
   return (

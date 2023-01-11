@@ -1,12 +1,12 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Form } from '../Form/Form'
-import { clearTodosAC } from '../../redux/actionsCreators/todosAC'
+import { todosClear } from '../../redux/slices/todosSlice/todosSlice'
 
 export const Footer = React.memo(() => {
   const dispatch = useDispatch()
   const clearTodoHandler = () => {
-    dispatch(clearTodosAC())
+    dispatch(todosClear())
   }
 
   console.log('Render Footer')

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addNewTodoAC } from '../../redux/actionsCreators/todosAC'
+import { todoCreate } from '../../redux/slices/todosSlice/todosSlice'
 
 export const Form = React.memo(() => {
   const [input, setInput] = useState('')
@@ -10,7 +10,7 @@ export const Form = React.memo(() => {
     e.preventDefault()
 
     if (input) {
-      dispatch(addNewTodoAC(input))
+      dispatch(todoCreate(input))
       setInput('')
     }
   }
